@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function printInfo() {
+        let child1 = new Child();
+        child1.name = 'lily';
+        child1.eats.push('watermelon');
+        console.log(child1.name);
+        console.log(child1.eats);
+        child1.getName();
+        child1.get();
+        console.log(child1);
+        console.log('-----------------------');
+        let child2 = new Child();
+        console.log(child2.name);
+        console.log(child2.eats);
+        child2.getName();
+        child2.get();
+        console.log(child2);
+    }
+    /*1. 原型链继承
+    优点：可以继承父类所有属性和方法
+    缺点：存在属性共享问题（子类实例共享父类的属性和方法）对于引用类型数据，子类会修改父类的属性  2子类不能向父类传参
+    */
+    // function Parent() {
+    //     this.name = 'harper';
+    //     this.eats = ['apple'];
+    //     this.getName = () => {
+    //         console.log(this.name);
+    //     }
+    // }
+    // Parent.prototype.get = () => {
+    //     console.log('get on person.prototype')
+    // }
+
+    // function Child() { }
+    // Child.prototype = new Parent();
+
+    //printInfo();
+
+    /*2. 构造函数继承
+    优点：不存在属性共享问题 子类可以向父类传参
+    缺点：子类不能继承父类原型对象的属性和方法(eg:访问不到Parent.prototype的get方法; 子类实例的prototype是Object)
+    */
+    // function Parent() {
+    //     this.name = 'harper';
+    //     this.eats = ['apple'];
+    //     this.getName = () => {
+    //         console.log(this.name);
+    //     }
+    // }
+    // Parent.prototype.get = () => {
+    //     console.log('get on person.prototype')
+    // }
+
+    // function Child() {
+    //     Parent.call(this);
+    // }
+
+    // printInfo();
+
+    /*3. 组合式继承：原型链继承 + 构造函数继承
+    优点：无属性共享问题；子类实例可以访问到父类原型对象的属性和方法
+    缺点：会复制两份同样的数据，造成冗余
+    */
+    // function Parent() {
+    //     this.name = 'harper';
+    //     this.eats = ['apple'];
+    //     this.getName = () => {
+    //         console.log(this.name);
+    //     }
+    // }
+    // Parent.prototype.get = () => {
+    //     console.log('get on person.prototype')
+    // }
+
+    // function Child() {
+    //     Parent.call(this);
+    // }
+    // Child.prototype = new Parent();
+
+    // printInfo();
+    // let child1 = new Child();
+    // //原型链
+    // console.log(child1.__proto__ === Child.prototype, Child.prototype.__proto__ === Parent.prototype, Parent.prototype.__proto__ === Object.prototype, Object.prototype.__proto__ === null);
+
+    /*4. 寄生组合式继承 （推荐）
+    */
+
+    // function Parent() {
+    //     this.name = 'harper';
+    //     this.eats = ['apple'];
+    //     this.getName = () => {
+    //         console.log(this.name);
+    //     }
+    // }
+    // Parent.prototype.get = () => {
+    //     console.log('get on person.prototype')
+    // }
+
+    // function Child() {
+    //     Parent.call(this);
+    // }
+    // function Fn() {}
+    // Fn.prototype = Parent.prototype;
+    // Child.prototype = new Fn();
+    // // Child.prototype = Parent.prototype; 如果是这样，相当于复制Parent；并没有体现对Parent的继承
+
+    // printInfo();
+    // console.log(new Parent())
+
+    /*5. ES6 通过extends继承
+    */
+    class Parent {
+        constructor() {
+            this.name = 'harper';
+            this.eats = ['apple'];
+            this.getName = () => {
+                console.log(this.name);
+            }
+        }
+        get = () => {
+            console.log('get on person.prototype')
+        }
+    }
+    class Child extends Parent { }
+
+    printInfo();
+</script>
+</html>
