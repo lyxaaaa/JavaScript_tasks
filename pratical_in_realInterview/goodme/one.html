@@ -1,0 +1,63 @@
+<!-- 三栏布局 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        color: black;
+    }
+    .headers {
+        width: 100%;
+        height: 200px;
+        background-color: #8ebc8f;
+    }
+    .bodys {
+        display: grid;
+        grid-template-columns: 200px 1fr 300px;
+        width: 100%;
+    }
+    .left {
+        min-height: 200px;
+        background-color: blue;
+    }
+    .mains {
+        min-height: 250px;
+        background-color: rgb(222, 38, 69);
+    }
+    .right {
+        min-height: 250px;
+        background-color: purple;
+    }
+    .footers {
+        width: 100%;
+        height: 200px;
+        background-color: gray;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <div class="headers">Header内容区</div>
+        <div class="bodys">
+            <!-- 高度以取最高的为准 -->
+            <div class="left">左边栏</div>
+            <div class="mains">好好学习，天天向上 每天进步一点点</div>
+            <div class="right">右边栏</div>
+        </div>
+        <div class="footers">Footer内容区</div>
+    </div>
+</body>
+</html>
